@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Steel Purchase Order #2024-156</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: Arial, sans-serif;
+      padding: 40px;
+      background: #fff;
+      color: #1a1a1a;
+      line-height: 1.5;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    .po-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      border-bottom: 3px solid #2563eb;
+      padding-bottom: 20px;
+      margin-bottom: 30px;
+    }
+    .company-info h1 { font-size: 22px; color: #2563eb; }
+    .company-info p { font-size: 12px; color: #666; }
+    .po-title { text-align: right; }
+    .po-title h2 { font-size: 28px; color: #2563eb; }
+    .po-number { font-size: 18px; font-weight: bold; margin-top: 10px; }
+    .po-date { color: #666; }
+    .addresses { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; margin-bottom: 30px; }
+    .address-box { padding: 15px; background: #f8fafc; border-left: 4px solid #2563eb; }
+    .address-box h3 { font-size: 12px; color: #666; text-transform: uppercase; margin-bottom: 10px; }
+    .address-box p { font-size: 14px; }
+    table { width: 100%; border-collapse: collapse; margin: 20px 0; }
+    th { background: #2563eb; color: white; padding: 12px; text-align: left; font-size: 12px; text-transform: uppercase; }
+    td { padding: 12px; border-bottom: 1px solid #e5e7eb; }
+    .item-code { font-family: monospace; color: #666; }
+    .qty { text-align: center; }
+    .amount { text-align: right; font-family: monospace; }
+    .totals { margin-left: auto; width: 300px; }
+    .totals table { margin: 0; }
+    .totals th { background: #f1f5f9; color: #333; }
+    .grand-total { background: #2563eb !important; color: white !important; font-size: 16px; }
+    .terms { margin-top: 30px; padding: 20px; background: #f8fafc; border-radius: 8px; }
+    .terms h3 { font-size: 14px; margin-bottom: 15px; }
+    .terms ul { padding-left: 20px; font-size: 13px; color: #555; }
+    .terms li { margin-bottom: 8px; }
+    .footer { margin-top: 40px; display: flex; justify-content: space-between; }
+    .signature { text-align: center; width: 200px; }
+    .signature-line { border-top: 1px solid #333; margin-top: 60px; padding-top: 10px; font-size: 12px; }
+    .status-badge {
+      display: inline-block;
+      padding: 6px 16px;
+      background: #22c55e;
+      color: white;
+      border-radius: 20px;
+      font-size: 12px;
+      font-weight: bold;
+      text-transform: uppercase;
+    }
+  </style>
+</head>
+<body>
+  <div class="po-header">
+    <div class="company-info">
+      <h1>RR Thulasi Builders Pvt. Ltd.</h1>
+      <p>123, Mount Road, Anna Nagar, Chennai - 600040</p>
+      <p>Tel: +91 44 2345 6789 | Email: purchase@rrthulasibuilders.com</p>
+      <p>GSTIN: 33AABCT1234M1ZP</p>
+    </div>
+    <div class="po-title">
+      <h2>PURCHASE ORDER</h2>
+      <div class="po-number">PO #2024-156</div>
+      <div class="po-date">Date: 05 January 2026</div>
+      <div style="margin-top: 10px;"><span class="status-badge">Approved</span></div>
+    </div>
+  </div>
+
+  <div class="addresses">
+    <div class="address-box">
+      <h3>Vendor</h3>
+      <p><strong>Steel Suppliers India Pvt. Ltd.</strong></p>
+      <p>Industrial Estate, Ambattur</p>
+      <p>Chennai - 600058</p>
+      <p>GSTIN: 33AABCS9876P1ZR</p>
+      <p>Contact: Mr. Ramesh Kumar</p>
+      <p>Phone: +91 98400 12345</p>
+    </div>
+    <div class="address-box">
+      <h3>Ship To</h3>
+      <p><strong>Metro Complex Tower Site</strong></p>
+      <p>Plot No. 45, T. Nagar</p>
+      <p>Chennai - 600017</p>
+      <p>Site Incharge: Mr. Venkat</p>
+      <p>Phone: +91 98400 67890</p>
+    </div>
+  </div>
+
+  <table>
+    <thead>
+      <tr>
+        <th style="width: 80px;">Item</th>
+        <th>Description</th>
+        <th style="width: 100px;">HSN Code</th>
+        <th style="width: 80px;">Qty</th>
+        <th style="width: 80px;">Unit</th>
+        <th style="width: 100px;">Rate</th>
+        <th style="width: 120px;">Amount</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="item-code">STL-001</td>
+        <td>TMT Steel Bars - Fe500D - 12mm</td>
+        <td>7214</td>
+        <td class="qty">5</td>
+        <td>MT</td>
+        <td class="amount">65,000</td>
+        <td class="amount">3,25,000</td>
+      </tr>
+      <tr>
+        <td class="item-code">STL-002</td>
+        <td>TMT Steel Bars - Fe500D - 16mm</td>
+        <td>7214</td>
+        <td class="qty">3</td>
+        <td>MT</td>
+        <td class="amount">64,500</td>
+        <td class="amount">1,93,500</td>
+      </tr>
+      <tr>
+        <td class="item-code">STL-003</td>
+        <td>TMT Steel Bars - Fe500D - 20mm</td>
+        <td>7214</td>
+        <td class="qty">2</td>
+        <td>MT</td>
+        <td class="amount">64,000</td>
+        <td class="amount">1,28,000</td>
+      </tr>
+      <tr>
+        <td class="item-code">STL-004</td>
+        <td>Binding Wire - 18 Gauge</td>
+        <td>7217</td>
+        <td class="qty">100</td>
+        <td>KG</td>
+        <td class="amount">85</td>
+        <td class="amount">8,500</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="totals">
+    <table>
+      <tr>
+        <th>Subtotal</th>
+        <td class="amount">6,55,000</td>
+      </tr>
+      <tr>
+        <th>CGST (9%)</th>
+        <td class="amount">58,950</td>
+      </tr>
+      <tr>
+        <th>SGST (9%)</th>
+        <td class="amount">58,950</td>
+      </tr>
+      <tr>
+        <th>Freight</th>
+        <td class="amount">12,000</td>
+      </tr>
+      <tr class="grand-total">
+        <th>Grand Total</th>
+        <td class="amount" style="color: white;">7,84,900</td>
+      </tr>
+    </table>
+  </div>
+
+  <div class="terms">
+    <h3>Terms & Conditions</h3>
+    <ul>
+      <li><strong>Delivery:</strong> Within 7 days from PO date to site address</li>
+      <li><strong>Payment:</strong> 100% within 30 days of delivery against invoice</li>
+      <li><strong>Quality:</strong> ISI certified material with mill test certificates</li>
+      <li><strong>Inspection:</strong> Subject to inspection at site before acceptance</li>
+      <li><strong>Warranty:</strong> Material defects to be replaced free of cost</li>
+    </ul>
+  </div>
+
+  <div class="footer">
+    <div class="signature">
+      <div class="signature-line">
+        <p>Prepared By</p>
+        <p>Purchase Department</p>
+      </div>
+    </div>
+    <div class="signature">
+      <div class="signature-line">
+        <p>Approved By</p>
+        <p>Thulasi Raman (MD)</p>
+      </div>
+    </div>
+  </div>
+
+  <div style="margin-top: 30px; text-align: center; font-size: 11px; color: #888;">
+    <p>Document ID: D002 | Project: Metro Complex Tower | BuildWise ERP System</p>
+  </div>
+</body>
+</html>

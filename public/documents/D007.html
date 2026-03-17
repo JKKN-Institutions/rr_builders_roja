@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>City Center Mall - Amendment 3</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Times New Roman', serif;
+      padding: 60px;
+      background: #fff;
+      color: #1a1a1a;
+      line-height: 1.7;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    .watermark {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%) rotate(-30deg);
+      font-size: 80px;
+      color: rgba(0,0,0,0.05);
+      white-space: nowrap;
+      pointer-events: none;
+      z-index: -1;
+    }
+    .header {
+      text-align: center;
+      margin-bottom: 40px;
+    }
+    .header h1 { font-size: 18px; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 10px; }
+    .header h2 { font-size: 22px; color: #7c3aed; margin-bottom: 5px; }
+    .header p { font-size: 13px; color: #666; }
+    .amendment-badge {
+      display: inline-block;
+      background: #fef3c7;
+      border: 2px solid #f59e0b;
+      color: #b45309;
+      padding: 8px 20px;
+      font-size: 14px;
+      font-weight: bold;
+      margin: 20px 0;
+    }
+    .parties {
+      margin: 30px 0;
+      padding: 20px;
+      background: #f8fafc;
+      border-left: 4px solid #7c3aed;
+    }
+    .parties h3 { font-size: 14px; color: #7c3aed; margin-bottom: 15px; }
+    .parties p { font-size: 13px; margin-bottom: 8px; }
+    .section {
+      margin: 30px 0;
+    }
+    .section h3 {
+      font-size: 14px;
+      color: #333;
+      text-transform: uppercase;
+      margin-bottom: 15px;
+      padding-bottom: 5px;
+      border-bottom: 1px solid #ddd;
+    }
+    .clause {
+      margin: 20px 0;
+      padding-left: 20px;
+    }
+    .clause-number {
+      font-weight: bold;
+      color: #7c3aed;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 20px 0;
+      font-size: 13px;
+    }
+    th, td {
+      padding: 12px;
+      text-align: left;
+      border: 1px solid #ddd;
+    }
+    th { background: #7c3aed; color: white; }
+    .highlight {
+      background: #fef3c7;
+      padding: 2px 5px;
+    }
+    .strikethrough {
+      text-decoration: line-through;
+      color: #dc2626;
+    }
+    .addition {
+      color: #16a34a;
+      font-weight: bold;
+    }
+    .summary-box {
+      background: #f0fdf4;
+      border: 1px solid #22c55e;
+      padding: 20px;
+      margin: 30px 0;
+      border-radius: 8px;
+    }
+    .summary-box h4 { color: #166534; margin-bottom: 15px; }
+    .summary-item {
+      display: flex;
+      justify-content: space-between;
+      padding: 8px 0;
+      border-bottom: 1px dashed #86efac;
+      font-size: 13px;
+    }
+    .signatures {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      margin-top: 60px;
+    }
+    .signature-block { text-align: center; }
+    .signature-line {
+      border-top: 1px solid #333;
+      margin-top: 70px;
+      padding-top: 10px;
+      font-size: 12px;
+    }
+    .witness {
+      margin-top: 40px;
+      padding-top: 20px;
+      border-top: 1px dashed #ccc;
+    }
+    .witness h4 { font-size: 13px; margin-bottom: 15px; }
+    .witness-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+    }
+    .witness-block {
+      font-size: 12px;
+    }
+    .footer {
+      margin-top: 40px;
+      text-align: center;
+      font-size: 11px;
+      color: #666;
+      border-top: 1px solid #ddd;
+      padding-top: 20px;
+    }
+  </style>
+</head>
+<body>
+  <div class="watermark">AMENDMENT</div>
+
+  <div class="header">
+    <h1>Contract Amendment Agreement</h1>
+    <h2>City Center Mall Project</h2>
+    <p>Original Contract Ref: RRT/2024/CCM/001 dated 01 December 2024</p>
+    <div class="amendment-badge">AMENDMENT NO. 3</div>
+  </div>
+
+  <div class="parties">
+    <h3>Parties to this Amendment</h3>
+    <p><strong>First Party (Contractor):</strong> RR Thulasi Builders Pvt. Ltd., Chennai</p>
+    <p><strong>Second Party (Client):</strong> City Center Developments LLP, Chennai</p>
+    <p><strong>Amendment Date:</strong> 20 November 2025</p>
+    <p><strong>Effective From:</strong> 01 December 2025</p>
+  </div>
+
+  <div class="section">
+    <h3>1. Recitals</h3>
+    <p class="clause">
+      <span class="clause-number">1.1</span> WHEREAS the Parties entered into a Construction Contract dated 01 December 2024 for the development of City Center Mall at Egmore, Chennai ("Original Contract");
+    </p>
+    <p class="clause">
+      <span class="clause-number">1.2</span> WHEREAS certain changes in scope and timeline have necessitated modifications to the Original Contract;
+    </p>
+    <p class="clause">
+      <span class="clause-number">1.3</span> NOW THEREFORE, the Parties agree to amend the Original Contract as follows:
+    </p>
+  </div>
+
+  <div class="section">
+    <h3>2. Amendments to Contract Value</h3>
+    <table>
+      <thead>
+        <tr>
+          <th>Item</th>
+          <th>Original Value</th>
+          <th>Revised Value</th>
+          <th>Change</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Base Contract Value</td>
+          <td>Rs. 28,00,00,000</td>
+          <td>Rs. 32,00,00,000</td>
+          <td class="addition">+Rs. 4,00,00,000</td>
+        </tr>
+        <tr>
+          <td>Additional Basement Level</td>
+          <td>-</td>
+          <td>Rs. 2,50,00,000</td>
+          <td class="addition">+Rs. 2,50,00,000</td>
+        </tr>
+        <tr>
+          <td>HVAC Upgrade</td>
+          <td>Rs. 1,20,00,000</td>
+          <td>Rs. 1,80,00,000</td>
+          <td class="addition">+Rs. 60,00,000</td>
+        </tr>
+        <tr>
+          <td><strong>Total Revised Contract</strong></td>
+          <td><strong>Rs. 29,20,00,000</strong></td>
+          <td><strong>Rs. 36,30,00,000</strong></td>
+          <td><strong class="addition">+Rs. 7,10,00,000</strong></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="section">
+    <h3>3. Amendments to Timeline</h3>
+    <p class="clause">
+      <span class="clause-number">3.1</span> Clause 4.2 of the Original Contract is hereby amended as follows:
+    </p>
+    <p style="margin: 15px 0 15px 30px;">
+      <span class="strikethrough">"The Project shall be completed by 31 March 2027"</span>
+    </p>
+    <p style="margin: 15px 0 15px 30px;">
+      <span class="addition">"The Project shall be completed by 30 June 2027"</span>
+    </p>
+    <p class="clause">
+      <span class="clause-number">3.2</span> Extension granted due to: (a) Addition of basement level, (b) Design modifications requested by Client.
+    </p>
+  </div>
+
+  <div class="section">
+    <h3>4. Revised Payment Schedule</h3>
+    <table>
+      <thead>
+        <tr>
+          <th>Milestone</th>
+          <th>Percentage</th>
+          <th>Amount (Rs.)</th>
+          <th>Due Date</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>On Amendment Signing</td>
+          <td>10%</td>
+          <td>3,63,00,000</td>
+          <td>Immediate</td>
+        </tr>
+        <tr>
+          <td>Basement Completion</td>
+          <td>20%</td>
+          <td>7,26,00,000</td>
+          <td>31-Mar-2026</td>
+        </tr>
+        <tr>
+          <td>Structure Completion</td>
+          <td>30%</td>
+          <td>10,89,00,000</td>
+          <td>30-Sep-2026</td>
+        </tr>
+        <tr>
+          <td>MEP & Finishing</td>
+          <td>30%</td>
+          <td>10,89,00,000</td>
+          <td>31-Mar-2027</td>
+        </tr>
+        <tr>
+          <td>Final Handover</td>
+          <td>10%</td>
+          <td>3,63,00,000</td>
+          <td>30-Jun-2027</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="summary-box">
+    <h4>Summary of Key Changes</h4>
+    <div class="summary-item">
+      <span>Contract Value Increase</span>
+      <span><strong>Rs. 7,10,00,000</strong> (24.3%)</span>
+    </div>
+    <div class="summary-item">
+      <span>Timeline Extension</span>
+      <span><strong>3 Months</strong></span>
+    </div>
+    <div class="summary-item">
+      <span>Additional Scope</span>
+      <span>1 Basement Level + HVAC Upgrade</span>
+    </div>
+    <div class="summary-item">
+      <span>New Completion Date</span>
+      <span><strong>30 June 2027</strong></span>
+    </div>
+  </div>
+
+  <div class="section">
+    <h3>5. General Provisions</h3>
+    <p class="clause">
+      <span class="clause-number">5.1</span> All other terms and conditions of the Original Contract remain unchanged and in full force.
+    </p>
+    <p class="clause">
+      <span class="clause-number">5.2</span> This Amendment shall be read in conjunction with the Original Contract and previous amendments.
+    </p>
+    <p class="clause">
+      <span class="clause-number">5.3</span> In case of conflict between this Amendment and the Original Contract, this Amendment shall prevail.
+    </p>
+  </div>
+
+  <div class="signatures">
+    <div class="signature-block">
+      <div class="signature-line">
+        <p><strong>For RR Thulasi Builders Pvt. Ltd.</strong></p>
+        <p>Authorized Signatory</p>
+        <p style="margin-top: 10px; font-size: 11px;">Name: ________________</p>
+        <p style="font-size: 11px;">Designation: ________________</p>
+      </div>
+    </div>
+    <div class="signature-block">
+      <div class="signature-line">
+        <p><strong>For City Center Developments LLP</strong></p>
+        <p>Authorized Signatory</p>
+        <p style="margin-top: 10px; font-size: 11px;">Name: ________________</p>
+        <p style="font-size: 11px;">Designation: ________________</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="witness">
+    <h4>Witnesses:</h4>
+    <div class="witness-grid">
+      <div class="witness-block">
+        <p>1. Name: ________________________</p>
+        <p style="margin-top: 5px;">Address: ________________________</p>
+        <p style="margin-top: 5px;">Signature: ________________________</p>
+      </div>
+      <div class="witness-block">
+        <p>2. Name: ________________________</p>
+        <p style="margin-top: 5px;">Address: ________________________</p>
+        <p style="margin-top: 5px;">Signature: ________________________</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">
+    <p>Document ID: D007 | Project: City Center Mall | Amendment No. 3</p>
+    <p>BuildWise ERP System | Page 1 of 1</p>
+  </div>
+</body>
+</html>

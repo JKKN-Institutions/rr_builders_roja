@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kumar Contractors Invoice - Dec 2025</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: Arial, sans-serif;
+      padding: 40px;
+      background: #fff;
+      color: #1a1a1a;
+      line-height: 1.5;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    .invoice-header {
+      display: flex;
+      justify-content: space-between;
+      border-bottom: 2px solid #059669;
+      padding-bottom: 20px;
+      margin-bottom: 30px;
+    }
+    .vendor-info h1 { font-size: 20px; color: #059669; }
+    .vendor-info p { font-size: 12px; color: #666; }
+    .invoice-title { text-align: right; }
+    .invoice-title h2 { font-size: 32px; color: #059669; letter-spacing: 2px; }
+    .invoice-meta { margin-top: 10px; font-size: 13px; }
+    .invoice-meta span { display: block; }
+    .parties { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; margin-bottom: 30px; }
+    .party h3 { font-size: 11px; color: #888; text-transform: uppercase; margin-bottom: 8px; }
+    .party p { font-size: 13px; }
+    .party strong { font-size: 14px; }
+    table { width: 100%; border-collapse: collapse; margin: 20px 0; }
+    th { background: #059669; color: white; padding: 12px; text-align: left; font-size: 12px; }
+    td { padding: 12px; border-bottom: 1px solid #e5e7eb; font-size: 13px; }
+    .amount-col { text-align: right; font-family: monospace; }
+    .summary { display: flex; justify-content: flex-end; margin-top: 20px; }
+    .summary-box { width: 280px; }
+    .summary-row { display: flex; justify-content: space-between; padding: 8px 0; border-bottom: 1px solid #eee; }
+    .summary-row.total { border-top: 2px solid #059669; border-bottom: none; font-weight: bold; font-size: 16px; padding-top: 12px; }
+    .summary-row .label { color: #666; }
+    .amount-words { background: #f0fdf4; padding: 15px; border-radius: 8px; margin-top: 20px; font-size: 13px; }
+    .bank-details { margin-top: 30px; padding: 20px; background: #f8fafc; border-radius: 8px; }
+    .bank-details h3 { font-size: 13px; color: #059669; margin-bottom: 15px; }
+    .bank-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; font-size: 12px; }
+    .bank-grid div { display: flex; }
+    .bank-grid span:first-child { color: #666; width: 120px; }
+    .footer { margin-top: 40px; display: flex; justify-content: space-between; align-items: flex-end; }
+    .signature { text-align: center; }
+    .signature-line { border-top: 1px solid #333; width: 180px; margin-top: 50px; padding-top: 8px; font-size: 12px; }
+    .stamp { text-align: right; }
+    .stamp-box {
+      display: inline-block;
+      padding: 15px 25px;
+      border: 2px solid #059669;
+      border-radius: 8px;
+      font-size: 11px;
+      color: #059669;
+      text-align: center;
+    }
+    .paid-stamp {
+      position: absolute;
+      right: 80px;
+      top: 200px;
+      transform: rotate(-15deg);
+      border: 4px solid #22c55e;
+      color: #22c55e;
+      padding: 10px 30px;
+      font-size: 24px;
+      font-weight: bold;
+      border-radius: 8px;
+      opacity: 0.7;
+    }
+  </style>
+</head>
+<body>
+  <div class="paid-stamp">PAID</div>
+
+  <div class="invoice-header">
+    <div class="vendor-info">
+      <h1>Kumar Labor Contractors</h1>
+      <p>Specialized Civil & Construction Labor Services</p>
+      <p>78, Velachery Main Road, Chennai - 600042</p>
+      <p>Phone: +91 98400 45678 | Email: kumar.contractors@gmail.com</p>
+      <p style="margin-top: 10px;">GSTIN: 33AABCK1234N1ZT | PAN: AABCK1234N</p>
+    </div>
+    <div class="invoice-title">
+      <h2>INVOICE</h2>
+      <div class="invoice-meta">
+        <span><strong>Invoice No:</strong> KC/2025-26/089</span>
+        <span><strong>Date:</strong> 02 January 2026</span>
+        <span><strong>Due Date:</strong> 17 January 2026</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="parties">
+    <div class="party">
+      <h3>Bill To</h3>
+      <p><strong>RR Thulasi Builders Pvt. Ltd.</strong></p>
+      <p>123, Mount Road, Anna Nagar</p>
+      <p>Chennai - 600040</p>
+      <p>GSTIN: 33AABCT1234M1ZP</p>
+    </div>
+    <div class="party">
+      <h3>Project Details</h3>
+      <p><strong>Valley View Apartments</strong></p>
+      <p>Plot No. 23, Velachery</p>
+      <p>Work Order: WO/VVA/2025/012</p>
+      <p>Period: December 2025</p>
+    </div>
+  </div>
+
+  <table>
+    <thead>
+      <tr>
+        <th style="width: 50px;">S.No</th>
+        <th>Description of Work</th>
+        <th style="width: 80px;">Unit</th>
+        <th style="width: 80px;">Qty</th>
+        <th style="width: 100px;">Rate</th>
+        <th style="width: 100px;">Amount</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>1</td>
+        <td>Mason Work - 2nd Floor Slab</td>
+        <td>Sq.ft</td>
+        <td>1,200</td>
+        <td class="amount-col">25.00</td>
+        <td class="amount-col">30,000</td>
+      </tr>
+      <tr>
+        <td>2</td>
+        <td>Helper Labor - General</td>
+        <td>Days</td>
+        <td>45</td>
+        <td class="amount-col">450.00</td>
+        <td class="amount-col">20,250</td>
+      </tr>
+      <tr>
+        <td>3</td>
+        <td>Steel Fixing Work</td>
+        <td>MT</td>
+        <td>2.5</td>
+        <td class="amount-col">8,000</td>
+        <td class="amount-col">20,000</td>
+      </tr>
+      <tr>
+        <td>4</td>
+        <td>Centering & Shuttering</td>
+        <td>Sq.ft</td>
+        <td>800</td>
+        <td class="amount-col">12.00</td>
+        <td class="amount-col">9,600</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="summary">
+    <div class="summary-box">
+      <div class="summary-row">
+        <span class="label">Subtotal</span>
+        <span>79,850</span>
+      </div>
+      <div class="summary-row">
+        <span class="label">Less: Retention (5%)</span>
+        <span>- 3,993</span>
+      </div>
+      <div class="summary-row">
+        <span class="label">Add: CGST (9%)</span>
+        <span>6,827</span>
+      </div>
+      <div class="summary-row">
+        <span class="label">Add: SGST (9%)</span>
+        <span>6,827</span>
+      </div>
+      <div class="summary-row total">
+        <span>Total Amount</span>
+        <span style="color: #059669;">Rs. 89,511</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="amount-words">
+    <strong>Amount in Words:</strong> Rupees Eighty-Nine Thousand Five Hundred and Eleven Only
+  </div>
+
+  <div class="bank-details">
+    <h3>Bank Details for Payment</h3>
+    <div class="bank-grid">
+      <div><span>Account Name:</span> <span>Kumar Labor Contractors</span></div>
+      <div><span>Bank Name:</span> <span>Indian Bank</span></div>
+      <div><span>Account No:</span> <span>6789012345</span></div>
+      <div><span>Branch:</span> <span>Velachery</span></div>
+      <div><span>IFSC Code:</span> <span>IDIB000V123</span></div>
+      <div><span>Account Type:</span> <span>Current Account</span></div>
+    </div>
+  </div>
+
+  <div class="footer">
+    <div class="signature">
+      <div class="signature-line">
+        For Kumar Labor Contractors<br>
+        <small>Authorized Signatory</small>
+      </div>
+    </div>
+    <div class="stamp">
+      <div class="stamp-box">
+        KUMAR LABOR<br>CONTRACTORS<br>CHENNAI
+      </div>
+    </div>
+  </div>
+
+  <div style="margin-top: 30px; text-align: center; font-size: 11px; color: #888;">
+    <p>Document ID: D003 | Payment Status: Paid on 13-Jan-2026 | BuildWise ERP System</p>
+  </div>
+</body>
+</html>

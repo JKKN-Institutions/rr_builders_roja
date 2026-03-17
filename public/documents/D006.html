@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cement Receipt #45621</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: Arial, sans-serif;
+      padding: 30px;
+      background: #fff;
+      color: #1a1a1a;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+    .receipt {
+      border: 2px dashed #888;
+      padding: 30px;
+      background: #fafafa;
+    }
+    .receipt-header {
+      text-align: center;
+      border-bottom: 2px solid #333;
+      padding-bottom: 15px;
+      margin-bottom: 20px;
+    }
+    .receipt-header h1 { font-size: 20px; }
+    .receipt-header p { font-size: 12px; color: #666; }
+    .receipt-title {
+      text-align: center;
+      background: #333;
+      color: white;
+      padding: 10px;
+      margin: 20px 0;
+      font-size: 16px;
+      letter-spacing: 2px;
+    }
+    .receipt-info {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-bottom: 20px;
+      font-size: 13px;
+    }
+    .receipt-info div {
+      display: flex;
+      justify-content: space-between;
+      padding: 5px 0;
+      border-bottom: 1px dotted #ccc;
+    }
+    .receipt-info .label { color: #666; }
+    .items {
+      margin: 20px 0;
+    }
+    .items table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 12px;
+    }
+    .items th {
+      background: #eee;
+      padding: 8px;
+      text-align: left;
+      border-bottom: 2px solid #333;
+    }
+    .items td {
+      padding: 8px;
+      border-bottom: 1px solid #ddd;
+    }
+    .items .amount { text-align: right; font-family: monospace; }
+    .totals {
+      margin-top: 20px;
+      border-top: 2px solid #333;
+      padding-top: 15px;
+    }
+    .total-row {
+      display: flex;
+      justify-content: space-between;
+      padding: 5px 0;
+      font-size: 13px;
+    }
+    .total-row.grand {
+      font-size: 16px;
+      font-weight: bold;
+      border-top: 1px solid #333;
+      padding-top: 10px;
+      margin-top: 10px;
+    }
+    .payment-info {
+      background: #e8f5e9;
+      padding: 15px;
+      margin-top: 20px;
+      border-radius: 8px;
+      font-size: 12px;
+    }
+    .payment-info h4 {
+      color: #2e7d32;
+      margin-bottom: 10px;
+    }
+    .footer {
+      text-align: center;
+      margin-top: 30px;
+      padding-top: 20px;
+      border-top: 1px dashed #888;
+      font-size: 11px;
+      color: #666;
+    }
+    .barcode {
+      text-align: center;
+      margin: 20px 0;
+      font-family: monospace;
+      font-size: 10px;
+    }
+    .barcode-visual {
+      display: flex;
+      justify-content: center;
+      gap: 2px;
+      margin-bottom: 5px;
+    }
+    .barcode-visual span {
+      width: 2px;
+      height: 40px;
+      background: #333;
+    }
+    .barcode-visual span:nth-child(odd) { width: 1px; }
+    .barcode-visual span:nth-child(3n) { width: 3px; }
+  </style>
+</head>
+<body>
+  <div class="receipt">
+    <div class="receipt-header">
+      <h1>Chennai Cement Works</h1>
+      <p>Authorised Dealer - UltraTech | ACC | Dalmia</p>
+      <p>234, Industrial Estate, Ambattur, Chennai - 600058</p>
+      <p>Tel: 044-2645 7890 | GSTIN: 33AABCC1234K1ZM</p>
+    </div>
+
+    <div class="receipt-title">MATERIAL RECEIPT</div>
+
+    <div class="receipt-info">
+      <div>
+        <span class="label">Receipt No:</span>
+        <span><strong>#45621</strong></span>
+      </div>
+      <div>
+        <span class="label">Date:</span>
+        <span>12-Jan-2026</span>
+      </div>
+      <div>
+        <span class="label">Time:</span>
+        <span>10:45 AM</span>
+      </div>
+      <div>
+        <span class="label">Payment:</span>
+        <span>CASH</span>
+      </div>
+    </div>
+
+    <div style="background: #f5f5f5; padding: 15px; margin: 15px 0; font-size: 13px;">
+      <strong>Customer:</strong> RR Thulasi Builders Pvt. Ltd.<br>
+      <strong>Project:</strong> Tech Park Phase 2, OMR<br>
+      <strong>Site Contact:</strong> Mr. Suresh - 98400 56789<br>
+      <strong>Delivery Challan:</strong> DC/CCW/2026/0892
+    </div>
+
+    <div class="items">
+      <table>
+        <thead>
+          <tr>
+            <th>Item</th>
+            <th>Brand</th>
+            <th>Qty</th>
+            <th>Rate</th>
+            <th>Amount</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>OPC 53 Grade Cement</td>
+            <td>UltraTech</td>
+            <td>100 Bags</td>
+            <td class="amount">380</td>
+            <td class="amount">38,000</td>
+          </tr>
+          <tr>
+            <td>PPC Cement</td>
+            <td>ACC</td>
+            <td>50 Bags</td>
+            <td class="amount">365</td>
+            <td class="amount">18,250</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="totals">
+      <div class="total-row">
+        <span>Subtotal</span>
+        <span>56,250</span>
+      </div>
+      <div class="total-row">
+        <span>CGST (14%)</span>
+        <span>7,875</span>
+      </div>
+      <div class="total-row">
+        <span>SGST (14%)</span>
+        <span>7,875</span>
+      </div>
+      <div class="total-row">
+        <span>Loading Charges</span>
+        <span>500</span>
+      </div>
+      <div class="total-row grand">
+        <span>TOTAL PAID</span>
+        <span>Rs. 72,500</span>
+      </div>
+    </div>
+
+    <div class="payment-info">
+      <h4>Payment Received</h4>
+      <div style="display: flex; justify-content: space-between;">
+        <span>Mode: Cash</span>
+        <span>Amount: Rs. 72,500/-</span>
+      </div>
+      <div style="margin-top: 10px;">
+        <strong>Amount in Words:</strong> Rupees Seventy-Two Thousand Five Hundred Only
+      </div>
+    </div>
+
+    <div class="barcode">
+      <div class="barcode-visual">
+        <span></span><span></span><span></span><span></span><span></span>
+        <span></span><span></span><span></span><span></span><span></span>
+        <span></span><span></span><span></span><span></span><span></span>
+        <span></span><span></span><span></span><span></span><span></span>
+        <span></span><span></span><span></span><span></span><span></span>
+      </div>
+      RCP-45621-12012026
+    </div>
+
+    <div class="footer">
+      <p><strong>Thank you for your business!</strong></p>
+      <p>Goods once sold will not be taken back.</p>
+      <p>E. & O.E. | Computer Generated Receipt</p>
+      <p style="margin-top: 10px;">Document ID: D006 | BuildWise ERP System</p>
+    </div>
+  </div>
+</body>
+</html>

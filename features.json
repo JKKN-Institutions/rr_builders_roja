@@ -1,0 +1,276 @@
+{
+  "project": "BuildWise Cashflow MVP",
+  "client": "RR Thulasi Builders",
+  "version": "0.1.0",
+  "lastUpdated": "2026-01-13",
+  "features": [
+    {
+      "id": "F001",
+      "name": "Landing Page",
+      "description": "Public landing page with hero section, feature highlights, and CTA buttons",
+      "status": "self-verified",
+      "priority": "high",
+      "test_steps": [
+        "Visit root URL /",
+        "Verify hero section displays BuildWise Cashflow branding",
+        "Verify 6 feature cards are visible",
+        "Click 'Get Started' navigates to /login",
+        "Test responsive layout on mobile viewport"
+      ]
+    },
+    {
+      "id": "F002",
+      "name": "Login Page",
+      "description": "Authentication page with email/password form and remember me option",
+      "status": "self-verified",
+      "priority": "high",
+      "test_steps": [
+        "Visit /login",
+        "Verify login form displays with email and password fields",
+        "Verify 'Remember me' checkbox exists",
+        "Submit form redirects to /dashboard",
+        "Test responsive layout on mobile viewport"
+      ]
+    },
+    {
+      "id": "F003",
+      "name": "Dashboard Layout",
+      "description": "Main dashboard layout with sidebar navigation and header",
+      "status": "self-verified",
+      "priority": "high",
+      "test_steps": [
+        "Visit /dashboard",
+        "Verify sidebar displays with all navigation items",
+        "Verify user avatar and name in sidebar footer",
+        "Verify logout button functions",
+        "Test sidebar collapse on mobile"
+      ]
+    },
+    {
+      "id": "F004",
+      "name": "Dashboard Overview",
+      "description": "Main dashboard with financial summary cards, charts, and quick links",
+      "status": "self-verified",
+      "priority": "high",
+      "test_steps": [
+        "Visit /dashboard",
+        "Verify 4 financial summary cards display (Cash, Bank, Receivables, Payables)",
+        "Verify cash flow trend chart renders with 7-day data",
+        "Verify 3 module quick link cards are clickable",
+        "Verify Recent WIP Alerts section shows 4 items",
+        "Verify Recent Transactions section shows 5 items",
+        "Verify Active Projects grid shows project cards",
+        "Test toast notification appears on page load"
+      ]
+    },
+    {
+      "id": "F005",
+      "name": "Projects List",
+      "description": "Project listing page with search, filters, and project cards",
+      "status": "self-verified",
+      "priority": "high",
+      "test_steps": [
+        "Visit /dashboard/projects",
+        "Verify project count summary displays",
+        "Verify search input filters projects by name",
+        "Verify status tabs filter projects (All, Active, On-Hold, Completed)",
+        "Verify project cards show budget utilization",
+        "Click project card navigates to detail page"
+      ]
+    },
+    {
+      "id": "F006",
+      "name": "Project Detail",
+      "description": "Individual project view with stats, charts, transactions, and documents",
+      "status": "self-verified",
+      "priority": "high",
+      "test_steps": [
+        "Visit /dashboard/projects/[id]",
+        "Verify project header with name and status badge",
+        "Verify statistics cards (Budget, Spent, Progress, Duration)",
+        "Verify budget breakdown chart renders",
+        "Verify recent transactions list",
+        "Verify project documents section",
+        "Back button returns to projects list"
+      ]
+    },
+    {
+      "id": "F007",
+      "name": "Live Tally Feed",
+      "description": "Real-time transaction feed with filters and export functionality",
+      "status": "self-verified",
+      "priority": "high",
+      "test_steps": [
+        "Visit /dashboard/tally",
+        "Verify transaction summary cards (Receipts, Payments, Net)",
+        "Verify transaction list displays with type indicators",
+        "Verify filter tabs (All, Receipts, Payments) work",
+        "Verify search filters by party name",
+        "Verify Export to CSV button downloads file",
+        "Verify transaction status badges display correctly"
+      ]
+    },
+    {
+      "id": "F008",
+      "name": "WIP Analysis",
+      "description": "Work-in-progress issue tracking with severity levels and filters",
+      "status": "self-verified",
+      "priority": "high",
+      "test_steps": [
+        "Visit /dashboard/wip",
+        "Verify summary cards (Total Issues, Critical, New)",
+        "Verify issue type tabs filter correctly",
+        "Verify search filters by title/project",
+        "Verify severity badges (critical=red, warning=yellow, info=blue)",
+        "Verify issue cards show budgeted vs actual amounts",
+        "Verify status badges (new, viewed, reviewed)"
+      ]
+    },
+    {
+      "id": "F009",
+      "name": "Reports Module",
+      "description": "Report listing with category filters, search, and export",
+      "status": "self-verified",
+      "priority": "medium",
+      "test_steps": [
+        "Visit /dashboard/reports",
+        "Verify category statistics chart renders",
+        "Verify category filter tabs work",
+        "Verify search filters by report name",
+        "Verify Export All CSV button works",
+        "Verify file type icons display correctly (PDF, XLSX)",
+        "Verify download buttons on report cards"
+      ]
+    },
+    {
+      "id": "F010",
+      "name": "Documents Module",
+      "description": "Document management with type filters and upload UI",
+      "status": "self-verified",
+      "priority": "medium",
+      "test_steps": [
+        "Visit /dashboard/documents",
+        "Verify document type filter tabs",
+        "Verify search filters documents",
+        "Verify upload button displays dialog",
+        "Verify document cards show metadata (size, date, project)"
+      ]
+    },
+    {
+      "id": "F011",
+      "name": "Schedules Module",
+      "description": "Gantt-style project schedule with hierarchical tasks",
+      "status": "self-verified",
+      "priority": "medium",
+      "test_steps": [
+        "Visit /dashboard/schedules",
+        "Verify project selector dropdown",
+        "Verify task tree displays hierarchically",
+        "Verify expand/collapse toggles work",
+        "Verify progress bars show correct percentages",
+        "Verify status badges (Completed, In Progress, Not Started, Delayed)"
+      ]
+    },
+    {
+      "id": "F012",
+      "name": "Settings Module",
+      "description": "User settings with profile, notifications, and display preferences",
+      "status": "self-verified",
+      "priority": "low",
+      "test_steps": [
+        "Visit /dashboard/settings",
+        "Verify profile section shows user info",
+        "Verify notification toggle switches work",
+        "Verify display settings (dark mode, compact view) work",
+        "Verify data management section displays"
+      ]
+    },
+    {
+      "id": "F013",
+      "name": "Mobile Responsiveness",
+      "description": "All pages optimized for mobile viewports with collapsible sidebar",
+      "status": "self-verified",
+      "priority": "high",
+      "test_steps": [
+        "Test all pages at 375px viewport width",
+        "Verify sidebar collapses to hamburger menu",
+        "Verify grids stack to single column",
+        "Verify text truncation on small screens",
+        "Verify touch targets are minimum 44px"
+      ]
+    },
+    {
+      "id": "F014",
+      "name": "Loading States",
+      "description": "Skeleton loading states for all dashboard pages",
+      "status": "self-verified",
+      "priority": "medium",
+      "test_steps": [
+        "Navigate to /dashboard with network throttling",
+        "Verify skeleton loaders display during load",
+        "Verify projects page has loading skeleton",
+        "Verify WIP page has loading skeleton"
+      ]
+    },
+    {
+      "id": "F015",
+      "name": "Dark Mode Support",
+      "description": "Theme toggle for light/dark mode with system preference detection",
+      "status": "self-verified",
+      "priority": "low",
+      "test_steps": [
+        "Visit /dashboard/settings",
+        "Toggle dark mode switch",
+        "Verify all pages render correctly in dark mode",
+        "Verify charts adapt to dark theme"
+      ]
+    },
+    {
+      "id": "F016",
+      "name": "CSV Export",
+      "description": "Export functionality for transactions and reports",
+      "status": "self-verified",
+      "priority": "medium",
+      "test_steps": [
+        "Visit /dashboard/tally",
+        "Click Export to CSV button",
+        "Verify CSV file downloads with correct data",
+        "Visit /dashboard/reports",
+        "Click Export All button",
+        "Verify reports CSV downloads"
+      ]
+    },
+    {
+      "id": "F017",
+      "name": "Toast Notifications",
+      "description": "User feedback via toast notifications using Sonner",
+      "status": "self-verified",
+      "priority": "low",
+      "test_steps": [
+        "Visit /dashboard",
+        "Verify success toast appears",
+        "Export CSV and verify success toast",
+        "Verify toast auto-dismisses after delay"
+      ]
+    },
+    {
+      "id": "F018",
+      "name": "INR Currency Formatting",
+      "description": "Proper Indian Rupee formatting with lakhs/crores",
+      "status": "self-verified",
+      "priority": "high",
+      "test_steps": [
+        "Verify amounts display with Indian number formatting",
+        "Verify compact format shows L (lakhs) and Cr (crores)",
+        "Verify INR symbol displays correctly"
+      ]
+    }
+  ],
+  "summary": {
+    "total": 18,
+    "self-verified": 18,
+    "in-progress": 0,
+    "not-started": 0,
+    "blocked": 0
+  }
+}

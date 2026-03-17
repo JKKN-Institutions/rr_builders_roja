@@ -1,0 +1,156 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}
+
+/* Construction Theme - BuildWise Cashflow */
+@layer base {
+  :root {
+    /* Navy Blue Primary - Construction Professional */
+    --background: 210 40% 98%;
+    --foreground: 215 50% 15%;
+    --card: 0 0% 100%;
+    --card-foreground: 215 50% 15%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 215 50% 15%;
+
+    /* Navy Blue Primary */
+    --primary: 213 56% 24%;
+    --primary-foreground: 0 0% 100%;
+
+    /* Steel Gray Secondary */
+    --secondary: 215 16% 47%;
+    --secondary-foreground: 0 0% 100%;
+
+    --muted: 210 40% 96%;
+    --muted-foreground: 215 16% 47%;
+
+    /* Safety Orange Accent */
+    --accent: 25 95% 53%;
+    --accent-foreground: 0 0% 100%;
+
+    /* Red for Critical */
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 214 32% 91%;
+    --input: 214 32% 91%;
+    --ring: 213 56% 24%;
+
+    /* Chart Colors */
+    --chart-1: 213 56% 24%;
+    --chart-2: 142 71% 45%;
+    --chart-3: 25 95% 53%;
+    --chart-4: 215 16% 47%;
+    --chart-5: 45 93% 47%;
+
+    --radius: 0.5rem;
+
+    /* Sidebar - Dark Navy */
+    --sidebar-background: 213 56% 18%;
+    --sidebar-foreground: 210 40% 96%;
+    --sidebar-primary: 25 95% 53%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 213 56% 24%;
+    --sidebar-accent-foreground: 210 40% 96%;
+    --sidebar-border: 213 50% 25%;
+    --sidebar-ring: 25 95% 53%;
+  }
+
+  .dark {
+    --background: 215 50% 10%;
+    --foreground: 210 40% 96%;
+    --card: 215 50% 13%;
+    --card-foreground: 210 40% 96%;
+    --popover: 215 50% 13%;
+    --popover-foreground: 210 40% 96%;
+
+    --primary: 213 56% 50%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 215 16% 60%;
+    --secondary-foreground: 0 0% 100%;
+
+    --muted: 215 30% 18%;
+    --muted-foreground: 215 16% 65%;
+
+    --accent: 25 95% 53%;
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 215 30% 22%;
+    --input: 215 30% 22%;
+    --ring: 213 56% 50%;
+
+    --chart-1: 213 56% 50%;
+    --chart-2: 142 71% 45%;
+    --chart-3: 25 95% 53%;
+    --chart-4: 215 16% 60%;
+    --chart-5: 45 93% 47%;
+
+    --radius: 0.5rem;
+
+    --sidebar-background: 215 50% 8%;
+    --sidebar-foreground: 210 40% 90%;
+    --sidebar-primary: 25 95% 53%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 215 50% 15%;
+    --sidebar-accent-foreground: 210 40% 90%;
+    --sidebar-border: 215 30% 18%;
+    --sidebar-ring: 25 95% 53%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: hsl(var(--muted));
+}
+
+::-webkit-scrollbar-thumb {
+  background: hsl(var(--secondary));
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: hsl(var(--primary));
+}
+
+/* Indian Rupee formatting */
+.currency-inr::before {
+  content: '₹';
+}
+
+/* Status indicators */
+.status-critical {
+  @apply bg-red-100 text-red-800 border-red-200;
+}
+.status-warning {
+  @apply bg-amber-100 text-amber-800 border-amber-200;
+}
+.status-info {
+  @apply bg-blue-100 text-blue-800 border-blue-200;
+}
+.status-success {
+  @apply bg-green-100 text-green-800 border-green-200;
+}

@@ -1,0 +1,88 @@
+# BuildWise Cashflow MVP — Progress
+
+## Status: PRODUCTION READY & DEPLOYED
+## Live URL: https://buildwise-mvp.vercel.app
+## Last Updated: 2026-03-07
+
+---
+
+## Session: March 7, 2026 (Production Backend)
+
+### What Was Done — All 7 Phases Complete
+
+**Phase 0: Supabase Foundation** ✅
+- Supabase project: vosrzovknoavlrofuuop (Mumbai region)
+- 8 tables + 3 materialized views + RLS policies
+- Migration: 20260307110100_dashboard_tables.sql
+
+**Phase 1: Bridge API Routes** ✅
+- 5 endpoints: heartbeat, ingest, reconcile, resync (GET + PATCH)
+- API key auth: prefix lookup + SHA-256 hash + timingSafeEqual
+- Auto-dedup via tally_master_id + client_id unique constraint
+
+**Phase 2: Auth + Roles** ✅
+- Supabase Auth with email/password
+- Middleware protects /dashboard/* routes
+- Roles in JWT: owner, admin, accountant, site-engineer, viewer
+
+**Phase 3: Data Layer** ✅
+- 4 data modules: dashboard, projects, tally-status, alerts
+- All server-side, typed returns, graceful error handling
+
+**Phase 4: Mock Data Elimination** ✅
+- Zero imports from mock-data remain
+- Server/client split pattern on all dynamic pages
+- Empty states for pages awaiting real usage data
+
+**Phase 5: Materialized Views** ✅
+- project_summaries, daily_cashflow, financial_summary
+- Refreshed CONCURRENTLY after each ingest batch
+- Cost centres auto-create projects
+
+**Phase 6: Alert System** ✅
+- alert_log table with event types
+- In-app notification data layer
+- Layout cleaned of all demo/mock artifacts
+
+**Phase 7: Testing + Deployment** ✅
+- Build clean, all 5 API endpoints verified on production
+- Browser test: 11 pages pass with zero errors
+- Auth, redirect, and role verified
+- Deployed to Vercel with env vars
+
+### Registered Clients
+
+| Client | ID | Login | API Key |
+|--------|-----|-------|---------|
+| RR Thulasi Builders | rr-thulasi-001 | md@rrthulasi.com / BuildWise2026! | bw_live_J3QoP0CKWJ3jSPIecUuz44IXniE2x3fa |
+| JKKN College of Education | jkkn-college-001 | admin@jkkn.ac.in / BuildWise2026! | bw_live_ET0k8WnTVfZFoLhP7Yn2EC45_0WKgb8K |
+
+### Git Commits
+1. 9660245 — Phase 0: Supabase foundation
+2. 785e2b4 — Phase 1: Bridge API routes
+3. 95aba17 — Phase 2: Auth + roles
+4. 2d47142 — Phase 3: Data layer
+5. ef7f785 — Phase 4: Replace all mock data
+6. 770fb34 — Phase 6: Alert system + layout cleanup
+
+### Known Limitations (v1)
+- Settings "16 projects / 8 team members" hardcoded
+- Reports/Schedules/Documents are empty shells
+- WhatsApp/email alerts not implemented (in-app only)
+- No per-page RBAC (all authenticated users see their client's data)
+- Bridge agent needs fresh npm install per target OS
+
+---
+
+## Session: January 13, 2026 (Initial Build)
+
+### What Was Built
+- Full frontend MVP: 12 modules, 20+ components
+- Mock data for 18 projects, transactions, WIP issues
+- Mobile responsive, dark mode, INR formatting
+- Landing page, login, sidebar navigation
+- Deployed to Vercel
+
+---
+
+*Last Updated: March 7, 2026*

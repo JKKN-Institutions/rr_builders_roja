@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Plumbing Layout - Heritage House</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+      background: #fff;
+      color: #1a1a1a;
+    }
+    .drawing-sheet {
+      border: 2px solid #0891b2;
+      padding: 15px;
+      background: #fff;
+    }
+    .title-block {
+      display: grid;
+      grid-template-columns: 1fr 250px;
+      border: 1px solid #0891b2;
+      margin-bottom: 15px;
+    }
+    .title-main {
+      padding: 15px;
+      border-right: 1px solid #0891b2;
+    }
+    .title-main h1 { font-size: 16px; color: #0891b2; }
+    .title-main h2 { font-size: 13px; color: #666; margin-top: 5px; }
+    .title-info {
+      font-size: 10px;
+    }
+    .title-row {
+      display: flex;
+      border-bottom: 1px solid #0891b2;
+    }
+    .title-row:last-child { border-bottom: none; }
+    .title-cell {
+      padding: 6px 10px;
+      border-right: 1px solid #0891b2;
+      flex: 1;
+    }
+    .title-cell:last-child { border-right: none; }
+    .title-cell .label { color: #666; font-size: 9px; display: block; }
+    .drawing-area {
+      background: #f0fdfa;
+      min-height: 450px;
+      border: 1px solid #99f6e4;
+      position: relative;
+      padding: 20px;
+    }
+    /* Floor plan representation */
+    .floor-plan {
+      width: 85%;
+      height: 380px;
+      margin: 10px auto;
+      border: 2px solid #0891b2;
+      position: relative;
+      background: white;
+    }
+    .room {
+      position: absolute;
+      border: 1px solid #64748b;
+      font-size: 9px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      background: #f8fafc;
+    }
+    .room-name { font-weight: bold; font-size: 10px; }
+    .room-size { color: #666; }
+    /* Rooms positioning */
+    .bedroom1 { left: 2%; top: 2%; width: 35%; height: 45%; }
+    .bedroom2 { right: 2%; top: 2%; width: 35%; height: 45%; }
+    .living { left: 2%; bottom: 2%; width: 55%; height: 48%; }
+    .kitchen { right: 2%; bottom: 2%; width: 25%; height: 30%; }
+    .bathroom1 { left: 38%; top: 2%; width: 22%; height: 25%; background: #e0f2fe; }
+    .bathroom2 { right: 28%; bottom: 2%; width: 15%; height: 20%; background: #e0f2fe; }
+    /* Plumbing elements */
+    .pipe {
+      position: absolute;
+      background: #0891b2;
+    }
+    .pipe-h { height: 4px; }
+    .pipe-v { width: 4px; }
+    .pipe-supply { background: #2563eb; }
+    .pipe-drain { background: #dc2626; }
+    .pipe-vent { background: #16a34a; }
+    /* Main supply line */
+    .main-supply { left: 5%; bottom: 10%; width: 90%; }
+    /* Branch lines */
+    .branch-1 { left: 48%; bottom: 10%; height: 85%; }
+    .branch-2 { left: 48%; top: 20%; width: 40%; }
+    .branch-3 { left: 48%; bottom: 25%; width: 35%; }
+    /* Drain lines */
+    .drain-main { left: 10%; bottom: 5%; width: 80%; }
+    .drain-1 { left: 50%; bottom: 5%; height: 40%; }
+    .drain-2 { right: 20%; bottom: 5%; height: 25%; }
+    /* Fixtures */
+    .fixture {
+      position: absolute;
+      border: 2px solid #0891b2;
+      border-radius: 4px;
+      font-size: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: white;
+    }
+    .toilet { width: 30px; height: 40px; background: #fef3c7; }
+    .sink { width: 35px; height: 25px; background: #dbeafe; border-radius: 50%; }
+    .shower { width: 40px; height: 40px; background: #e0f2fe; }
+    /* Fixture positions */
+    .fix-toilet1 { left: 42%; top: 15%; }
+    .fix-sink1 { left: 52%; top: 8%; }
+    .fix-shower1 { left: 42%; top: 5%; }
+    .fix-toilet2 { right: 22%; bottom: 8%; }
+    .fix-sink2 { right: 30%; bottom: 5%; }
+    .fix-ksink { right: 8%; bottom: 20%; }
+    /* Legend */
+    .legend {
+      position: absolute;
+      bottom: 15px;
+      right: 15px;
+      background: white;
+      padding: 10px;
+      border: 1px solid #0891b2;
+      font-size: 9px;
+    }
+    .legend h4 { font-size: 10px; margin-bottom: 8px; color: #0891b2; }
+    .legend-item {
+      display: flex;
+      align-items: center;
+      margin: 4px 0;
+    }
+    .legend-line {
+      width: 30px;
+      height: 4px;
+      margin-right: 8px;
+    }
+    .legend-symbol {
+      width: 20px;
+      height: 15px;
+      margin-right: 8px;
+      border: 1px solid #333;
+      font-size: 7px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    /* North arrow */
+    .north {
+      position: absolute;
+      top: 15px;
+      right: 15px;
+      width: 40px;
+      height: 40px;
+      border: 2px solid #0891b2;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+      background: white;
+    }
+    /* Notes section */
+    .notes {
+      margin-top: 15px;
+      padding: 10px;
+      background: #f0fdfa;
+      border: 1px solid #99f6e4;
+      font-size: 10px;
+    }
+    .notes h4 { color: #0891b2; margin-bottom: 8px; }
+    .notes-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 15px;
+    }
+    .notes ul { padding-left: 15px; }
+    .notes li { margin-bottom: 4px; }
+    /* Material schedule */
+    .schedule {
+      margin-top: 15px;
+      font-size: 9px;
+    }
+    .schedule table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+    .schedule th, .schedule td {
+      padding: 5px;
+      border: 1px solid #0891b2;
+      text-align: left;
+    }
+    .schedule th { background: #0891b2; color: white; }
+    .footer {
+      margin-top: 15px;
+      text-align: center;
+      font-size: 9px;
+      color: #666;
+    }
+  </style>
+</head>
+<body>
+  <div class="drawing-sheet">
+    <div class="title-block">
+      <div class="title-main">
+        <h1>PLUMBING LAYOUT - TYPICAL FLOOR</h1>
+        <h2>Heritage House, Mylapore, Chennai</h2>
+        <p style="font-size: 11px; margin-top: 10px;">Client: RR Thulasi Builders Pvt. Ltd.</p>
+      </div>
+      <div class="title-info">
+        <div class="title-row">
+          <div class="title-cell"><span class="label">DWG NO.</span>HH/PLB/002</div>
+          <div class="title-cell"><span class="label">SCALE</span>1:50</div>
+        </div>
+        <div class="title-row">
+          <div class="title-cell"><span class="label">DATE</span>25-Jul-2025</div>
+          <div class="title-cell"><span class="label">REV.</span>01</div>
+        </div>
+        <div class="title-row">
+          <div class="title-cell"><span class="label">DRAWN</span>SK</div>
+          <div class="title-cell"><span class="label">CHECKED</span>TR</div>
+        </div>
+        <div class="title-row">
+          <div class="title-cell" style="flex: 2;"><span class="label">CONSULTANT</span>JK Plumbing Services, Chennai</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="drawing-area">
+      <div class="north">N</div>
+
+      <div class="floor-plan">
+        <!-- Rooms -->
+        <div class="room bedroom1">
+          <span class="room-name">BEDROOM 1</span>
+          <span class="room-size">12' x 14'</span>
+        </div>
+        <div class="room bedroom2">
+          <span class="room-name">BEDROOM 2</span>
+          <span class="room-size">12' x 14'</span>
+        </div>
+        <div class="room bathroom1">
+          <span class="room-name">BATH 1</span>
+          <span class="room-size">8' x 6'</span>
+        </div>
+        <div class="room bathroom2">
+          <span class="room-name">BATH 2</span>
+          <span class="room-size">5' x 4'</span>
+        </div>
+        <div class="room living">
+          <span class="room-name">LIVING / DINING</span>
+          <span class="room-size">18' x 14'</span>
+        </div>
+        <div class="room kitchen">
+          <span class="room-name">KITCHEN</span>
+          <span class="room-size">10' x 8'</span>
+        </div>
+
+        <!-- Supply pipes -->
+        <div class="pipe pipe-h pipe-supply main-supply"></div>
+        <div class="pipe pipe-v pipe-supply branch-1"></div>
+        <div class="pipe pipe-h pipe-supply branch-2"></div>
+        <div class="pipe pipe-h pipe-supply branch-3"></div>
+
+        <!-- Drain pipes -->
+        <div class="pipe pipe-h pipe-drain drain-main"></div>
+        <div class="pipe pipe-v pipe-drain drain-1"></div>
+        <div class="pipe pipe-v pipe-drain drain-2"></div>
+
+        <!-- Fixtures -->
+        <div class="fixture toilet fix-toilet1">WC</div>
+        <div class="fixture sink fix-sink1">WHB</div>
+        <div class="fixture shower fix-shower1">SH</div>
+        <div class="fixture toilet fix-toilet2">WC</div>
+        <div class="fixture sink fix-sink2">WHB</div>
+        <div class="fixture sink fix-ksink">SINK</div>
+      </div>
+
+      <div class="legend">
+        <h4>LEGEND</h4>
+        <div class="legend-item">
+          <div class="legend-line" style="background: #2563eb;"></div>
+          Cold Water Supply
+        </div>
+        <div class="legend-item">
+          <div class="legend-line" style="background: #dc2626;"></div>
+          Drainage Line
+        </div>
+        <div class="legend-item">
+          <div class="legend-line" style="background: #16a34a;"></div>
+          Vent Pipe
+        </div>
+        <div class="legend-item">
+          <div class="legend-symbol" style="background: #fef3c7;">WC</div>
+          Water Closet
+        </div>
+        <div class="legend-item">
+          <div class="legend-symbol" style="background: #dbeafe;">WHB</div>
+          Wash Hand Basin
+        </div>
+        <div class="legend-item">
+          <div class="legend-symbol" style="background: #e0f2fe;">SH</div>
+          Shower
+        </div>
+      </div>
+    </div>
+
+    <div class="notes">
+      <h4>GENERAL NOTES:</h4>
+      <div class="notes-grid">
+        <ul>
+          <li>All pipes to be CPVC (Hot) and uPVC (Cold) as per IS standards</li>
+          <li>Supply pipes: 20mm dia for branches, 25mm for mains</li>
+          <li>Drainage: 110mm for WC, 75mm for other fixtures</li>
+          <li>Minimum slope for drainage: 1:40</li>
+          <li>All joints to be tested for leakage before concealing</li>
+        </ul>
+        <ul>
+          <li>P-traps mandatory for all fixtures</li>
+          <li>Floor traps: 100mm dia with SS jali</li>
+          <li>Water meter at main inlet point</li>
+          <li>Isolation valves at each bathroom entry</li>
+          <li>Refer to structural drawings for sleeve locations</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="schedule">
+      <table>
+        <thead>
+          <tr>
+            <th>S.No</th>
+            <th>Item</th>
+            <th>Specification</th>
+            <th>Qty</th>
+            <th>Brand</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>1</td>
+            <td>Water Closet (EWC)</td>
+            <td>Wall hung, dual flush, IS 2556</td>
+            <td>2 nos</td>
+            <td>Hindware / Parryware</td>
+          </tr>
+          <tr>
+            <td>2</td>
+            <td>Wash Basin</td>
+            <td>Counter top, 550mm, IS 2556</td>
+            <td>3 nos</td>
+            <td>Hindware / Parryware</td>
+          </tr>
+          <tr>
+            <td>3</td>
+            <td>Kitchen Sink</td>
+            <td>SS 304, 24"x18", single bowl</td>
+            <td>1 no</td>
+            <td>Franke / Nirali</td>
+          </tr>
+          <tr>
+            <td>4</td>
+            <td>Shower</td>
+            <td>Overhead 200mm + hand shower</td>
+            <td>1 set</td>
+            <td>Jaquar / Kohler</td>
+          </tr>
+          <tr>
+            <td>5</td>
+            <td>CP Fittings</td>
+            <td>Pillar cocks, angle valves, IS 8931</td>
+            <td>As reqd</td>
+            <td>Jaquar / Kohler</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="footer">
+      <p>Document ID: D008 | Project: Heritage House | BuildWise ERP System</p>
+      <p>This drawing is for reference only. Verify all dimensions at site before execution.</p>
+    </div>
+  </div>
+</body>
+</html>

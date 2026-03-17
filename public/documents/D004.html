@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Site Plan - Green Park Villas</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: Arial, sans-serif;
+      padding: 30px;
+      background: #fff;
+      color: #1a1a1a;
+    }
+    .drawing-frame {
+      border: 3px solid #1e3a5f;
+      padding: 20px;
+    }
+    .title-block {
+      display: grid;
+      grid-template-columns: 2fr 1fr;
+      gap: 20px;
+      border: 2px solid #1e3a5f;
+      margin-bottom: 20px;
+    }
+    .title-left {
+      padding: 15px;
+      border-right: 2px solid #1e3a5f;
+    }
+    .title-left h1 { font-size: 18px; color: #1e3a5f; }
+    .title-left h2 { font-size: 14px; color: #666; margin-top: 5px; }
+    .title-right {
+      display: grid;
+      grid-template-rows: repeat(4, 1fr);
+    }
+    .title-cell {
+      padding: 8px;
+      border-bottom: 1px solid #1e3a5f;
+      font-size: 11px;
+      display: flex;
+      justify-content: space-between;
+    }
+    .title-cell:last-child { border-bottom: none; }
+    .title-cell .label { color: #666; }
+    .drawing-area {
+      background: #f8fafc;
+      min-height: 500px;
+      border: 1px solid #ddd;
+      position: relative;
+      padding: 20px;
+    }
+    .site-boundary {
+      border: 3px solid #1e3a5f;
+      width: 90%;
+      height: 400px;
+      margin: 20px auto;
+      position: relative;
+      background: #e8f4e8;
+    }
+    .building-block {
+      position: absolute;
+      background: #fef3c7;
+      border: 2px solid #92400e;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 10px;
+      text-align: center;
+    }
+    .block-a { left: 10%; top: 15%; width: 35%; height: 30%; }
+    .block-b { right: 10%; top: 15%; width: 35%; height: 30%; }
+    .block-c { left: 25%; bottom: 15%; width: 50%; height: 25%; }
+    .road {
+      position: absolute;
+      background: #94a3b8;
+    }
+    .road-main { bottom: 0; left: 0; right: 0; height: 40px; }
+    .road-internal { left: 48%; top: 0; bottom: 40px; width: 4%; }
+    .parking {
+      position: absolute;
+      background: #dbeafe;
+      border: 1px solid #3b82f6;
+      font-size: 9px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .parking-1 { left: 5%; top: 55%; width: 15%; height: 15%; }
+    .parking-2 { right: 5%; top: 55%; width: 15%; height: 15%; }
+    .green-area {
+      position: absolute;
+      background: #86efac;
+      border: 1px dashed #22c55e;
+      font-size: 9px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #166534;
+    }
+    .green-1 { left: 5%; top: 5%; width: 20%; height: 8%; }
+    .green-2 { right: 5%; top: 5%; width: 20%; height: 8%; }
+    .north-arrow {
+      position: absolute;
+      right: 30px;
+      top: 30px;
+      width: 50px;
+      height: 50px;
+      border: 2px solid #1e3a5f;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+      font-size: 14px;
+      background: white;
+    }
+    .north-arrow::after {
+      content: '';
+      position: absolute;
+      top: -15px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 0;
+      height: 0;
+      border-left: 8px solid transparent;
+      border-right: 8px solid transparent;
+      border-bottom: 15px solid #1e3a5f;
+    }
+    .scale-bar {
+      position: absolute;
+      bottom: 60px;
+      left: 30px;
+      font-size: 10px;
+    }
+    .scale-bar div {
+      display: flex;
+      margin-top: 5px;
+    }
+    .scale-segment {
+      width: 30px;
+      height: 8px;
+      border: 1px solid #333;
+    }
+    .scale-segment:nth-child(odd) { background: #333; }
+    .legend {
+      position: absolute;
+      bottom: 60px;
+      right: 30px;
+      font-size: 10px;
+      background: white;
+      padding: 10px;
+      border: 1px solid #ddd;
+    }
+    .legend-item {
+      display: flex;
+      align-items: center;
+      margin: 5px 0;
+    }
+    .legend-box {
+      width: 20px;
+      height: 12px;
+      margin-right: 8px;
+      border: 1px solid #333;
+    }
+    .dimensions {
+      position: absolute;
+      font-size: 10px;
+      color: #1e3a5f;
+    }
+    .dim-top { top: -15px; left: 50%; transform: translateX(-50%); }
+    .dim-left { left: -35px; top: 50%; transform: translateY(-50%) rotate(-90deg); }
+    .notes {
+      margin-top: 20px;
+      padding: 15px;
+      background: #f8fafc;
+      border: 1px solid #ddd;
+      font-size: 11px;
+    }
+    .notes h3 { font-size: 12px; margin-bottom: 10px; }
+    .notes ul { padding-left: 20px; }
+    .notes li { margin-bottom: 5px; }
+    .revision-table {
+      margin-top: 20px;
+      font-size: 10px;
+    }
+    .revision-table table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+    .revision-table th, .revision-table td {
+      border: 1px solid #1e3a5f;
+      padding: 6px;
+      text-align: left;
+    }
+    .revision-table th {
+      background: #1e3a5f;
+      color: white;
+    }
+  </style>
+</head>
+<body>
+  <div class="drawing-frame">
+    <div class="title-block">
+      <div class="title-left">
+        <h1>GREEN PARK VILLAS - SITE LAYOUT PLAN</h1>
+        <h2>Plot No. 45-48, Adyar, Chennai - 600020</h2>
+        <p style="margin-top: 15px; font-size: 12px;">
+          <strong>Client:</strong> RR Thulasi Builders Pvt. Ltd.<br>
+          <strong>Architect:</strong> Design Associates, Chennai
+        </p>
+      </div>
+      <div class="title-right">
+        <div class="title-cell">
+          <span class="label">Drawing No:</span>
+          <span>GPV/SP/001</span>
+        </div>
+        <div class="title-cell">
+          <span class="label">Scale:</span>
+          <span>1:500</span>
+        </div>
+        <div class="title-cell">
+          <span class="label">Date:</span>
+          <span>20-Aug-2025</span>
+        </div>
+        <div class="title-cell">
+          <span class="label">Revision:</span>
+          <span>Rev. 02</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="drawing-area">
+      <div class="north-arrow">N</div>
+
+      <div class="site-boundary">
+        <div class="dimensions dim-top">85.0 m</div>
+        <div class="dimensions dim-left">65.0 m</div>
+
+        <div class="building-block block-a">
+          <div>
+            <strong>BLOCK A</strong><br>
+            G+2 Floors<br>
+            8 Units<br>
+            1,200 sq.m
+          </div>
+        </div>
+
+        <div class="building-block block-b">
+          <div>
+            <strong>BLOCK B</strong><br>
+            G+2 Floors<br>
+            8 Units<br>
+            1,200 sq.m
+          </div>
+        </div>
+
+        <div class="building-block block-c">
+          <div>
+            <strong>BLOCK C - CLUBHOUSE</strong><br>
+            G+1 Floor | 600 sq.m
+          </div>
+        </div>
+
+        <div class="parking parking-1">VISITOR<br>PARKING<br>(12 cars)</div>
+        <div class="parking parking-2">RESIDENT<br>PARKING<br>(16 cars)</div>
+
+        <div class="green-area green-1">GARDEN</div>
+        <div class="green-area green-2">PLAY AREA</div>
+
+        <div class="road road-main" style="display: flex; align-items: center; justify-content: center; color: white; font-size: 10px;">
+          40 FT WIDE MAIN ROAD
+        </div>
+        <div class="road road-internal"></div>
+      </div>
+
+      <div class="scale-bar">
+        <span>Scale 1:500</span>
+        <div>
+          <div class="scale-segment"></div>
+          <div class="scale-segment"></div>
+          <div class="scale-segment"></div>
+          <div class="scale-segment"></div>
+        </div>
+        <span>0 &nbsp;&nbsp;&nbsp; 10 &nbsp;&nbsp;&nbsp; 20 &nbsp;&nbsp;&nbsp; 30m</span>
+      </div>
+
+      <div class="legend">
+        <strong>LEGEND</strong>
+        <div class="legend-item">
+          <div class="legend-box" style="background: #fef3c7;"></div>
+          Building Block
+        </div>
+        <div class="legend-item">
+          <div class="legend-box" style="background: #dbeafe;"></div>
+          Parking Area
+        </div>
+        <div class="legend-item">
+          <div class="legend-box" style="background: #86efac;"></div>
+          Green/Open Space
+        </div>
+        <div class="legend-item">
+          <div class="legend-box" style="background: #94a3b8;"></div>
+          Roads
+        </div>
+      </div>
+    </div>
+
+    <div class="notes">
+      <h3>NOTES:</h3>
+      <ul>
+        <li>Total Plot Area: 5,525 sq.m (1.36 Acres)</li>
+        <li>Total Built-up Area: 3,000 sq.m</li>
+        <li>Ground Coverage: 35%</li>
+        <li>FSI Utilized: 1.5</li>
+        <li>Setbacks: Front - 6m, Rear - 3m, Side - 3m</li>
+        <li>All dimensions are in meters unless specified</li>
+        <li>This drawing is for approval purpose only. Working drawings to follow.</li>
+      </ul>
+    </div>
+
+    <div class="revision-table">
+      <table>
+        <thead>
+          <tr>
+            <th>Rev.</th>
+            <th>Date</th>
+            <th>Description</th>
+            <th>By</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>00</td>
+            <td>15-Aug-2025</td>
+            <td>Initial Issue for Approval</td>
+            <td>AR</td>
+          </tr>
+          <tr>
+            <td>01</td>
+            <td>18-Aug-2025</td>
+            <td>Updated setbacks as per CMDA comments</td>
+            <td>AR</td>
+          </tr>
+          <tr>
+            <td>02</td>
+            <td>20-Aug-2025</td>
+            <td>Parking layout revised</td>
+            <td>AR</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div style="margin-top: 20px; text-align: center; font-size: 11px; color: #888;">
+    <p>Document ID: D004 | Project: Green Park Villas | BuildWise ERP System</p>
+  </div>
+</body>
+</html>

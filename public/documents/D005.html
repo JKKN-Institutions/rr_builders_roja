@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Electrical Approval - Royal Heights</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Times New Roman', serif;
+      padding: 50px;
+      background: #fff;
+      color: #1a1a1a;
+      line-height: 1.6;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    .govt-header {
+      text-align: center;
+      border-bottom: 2px solid #333;
+      padding-bottom: 20px;
+      margin-bottom: 30px;
+    }
+    .emblem {
+      width: 80px;
+      height: 80px;
+      margin: 0 auto 15px;
+      border: 3px solid #8b4513;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 12px;
+      color: #8b4513;
+      text-align: center;
+      font-weight: bold;
+    }
+    .govt-header h1 { font-size: 18px; color: #1a1a1a; text-transform: uppercase; }
+    .govt-header h2 { font-size: 14px; color: #444; margin-top: 5px; }
+    .govt-header p { font-size: 12px; color: #666; margin-top: 5px; }
+    .ref-section {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 30px;
+      font-size: 13px;
+    }
+    .approval-title {
+      text-align: center;
+      margin: 30px 0;
+      padding: 15px;
+      background: #f0f9ff;
+      border: 1px solid #0ea5e9;
+    }
+    .approval-title h2 {
+      font-size: 16px;
+      color: #0369a1;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+    }
+    .content-section {
+      margin-bottom: 25px;
+    }
+    .content-section h3 {
+      font-size: 14px;
+      color: #333;
+      margin-bottom: 10px;
+      border-bottom: 1px solid #ddd;
+      padding-bottom: 5px;
+    }
+    .details-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 15px 0;
+      font-size: 13px;
+    }
+    .details-table th, .details-table td {
+      padding: 10px;
+      text-align: left;
+      border: 1px solid #ddd;
+    }
+    .details-table th {
+      background: #f8fafc;
+      width: 40%;
+    }
+    .load-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 15px 0;
+      font-size: 12px;
+    }
+    .load-table th, .load-table td {
+      padding: 8px;
+      text-align: left;
+      border: 1px solid #ddd;
+    }
+    .load-table th {
+      background: #1e3a5f;
+      color: white;
+    }
+    .load-table tfoot {
+      background: #f0f9ff;
+      font-weight: bold;
+    }
+    .conditions {
+      background: #fefce8;
+      padding: 20px;
+      border: 1px solid #fbbf24;
+      border-radius: 8px;
+      margin: 20px 0;
+    }
+    .conditions h3 {
+      color: #b45309;
+      margin-bottom: 15px;
+    }
+    .conditions ol {
+      padding-left: 20px;
+      font-size: 12px;
+    }
+    .conditions li {
+      margin-bottom: 8px;
+    }
+    .approval-box {
+      background: #f0fdf4;
+      border: 2px solid #22c55e;
+      padding: 20px;
+      text-align: center;
+      margin: 30px 0;
+    }
+    .approval-box h3 {
+      color: #166534;
+      font-size: 18px;
+      margin-bottom: 10px;
+    }
+    .approval-box p {
+      font-size: 13px;
+      color: #333;
+    }
+    .validity {
+      display: flex;
+      justify-content: space-around;
+      margin-top: 15px;
+      font-size: 12px;
+    }
+    .validity div {
+      text-align: center;
+    }
+    .validity strong {
+      display: block;
+      color: #166534;
+    }
+    .signatures {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      margin-top: 50px;
+    }
+    .signature-block {
+      text-align: center;
+    }
+    .signature-line {
+      border-top: 1px solid #333;
+      margin-top: 60px;
+      padding-top: 10px;
+      font-size: 12px;
+    }
+    .official-seal {
+      width: 100px;
+      height: 100px;
+      margin: 20px auto;
+      border: 3px solid #1e3a5f;
+      border-radius: 50%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      font-size: 9px;
+      color: #1e3a5f;
+      text-align: center;
+    }
+    .footer-note {
+      margin-top: 40px;
+      padding-top: 20px;
+      border-top: 1px solid #ddd;
+      font-size: 11px;
+      color: #666;
+      text-align: center;
+    }
+    .qr-placeholder {
+      width: 80px;
+      height: 80px;
+      border: 1px solid #ddd;
+      margin: 10px auto;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 10px;
+      color: #888;
+    }
+  </style>
+</head>
+<body>
+  <div class="govt-header">
+    <div class="emblem">GOVT OF<br>TAMIL<br>NADU</div>
+    <h1>Tamil Nadu Generation and Distribution Corporation</h1>
+    <h2>TANGEDCO - Chennai South Circle</h2>
+    <p>Electrical Inspectorate Division | Chennai Region</p>
+    <p>No. 144, Anna Salai, Teynampet, Chennai - 600018</p>
+  </div>
+
+  <div class="ref-section">
+    <div>
+      <strong>Ref No:</strong> TANGEDCO/CS/EI/2025/4521<br>
+      <strong>Application No:</strong> APP/RH/2025/0892
+    </div>
+    <div style="text-align: right;">
+      <strong>Date:</strong> 15 October 2025<br>
+      <strong>TNEA Reg:</strong> EA/CHN/2025/1234
+    </div>
+  </div>
+
+  <div class="approval-title">
+    <h2>Electrical Installation Approval Certificate</h2>
+  </div>
+
+  <div class="content-section">
+    <h3>1. Applicant Details</h3>
+    <table class="details-table">
+      <tr>
+        <th>Applicant Name</th>
+        <td>RR Thulasi Builders Pvt. Ltd.</td>
+      </tr>
+      <tr>
+        <th>Address</th>
+        <td>123, Mount Road, Anna Nagar, Chennai - 600040</td>
+      </tr>
+      <tr>
+        <th>Contact Person</th>
+        <td>Mr. Thulasi Raman (Managing Director)</td>
+      </tr>
+      <tr>
+        <th>Phone / Email</th>
+        <td>+91 98400 12345 / md@rrthulasibuilders.com</td>
+      </tr>
+    </table>
+  </div>
+
+  <div class="content-section">
+    <h3>2. Project Details</h3>
+    <table class="details-table">
+      <tr>
+        <th>Project Name</th>
+        <td>Royal Heights Apartments</td>
+      </tr>
+      <tr>
+        <th>Location</th>
+        <td>Plot No. 67-70, Porur, Chennai - 600116</td>
+      </tr>
+      <tr>
+        <th>Type of Building</th>
+        <td>Residential Apartment Complex (G+3 Floors)</td>
+      </tr>
+      <tr>
+        <th>Number of Units</th>
+        <td>16 Apartments</td>
+      </tr>
+      <tr>
+        <th>Total Built-up Area</th>
+        <td>28,000 sq. ft.</td>
+      </tr>
+      <tr>
+        <th>Licensed Electrical Contractor</th>
+        <td>M/s. Electricals Plus, Chennai (License No: EC/TN/2024/5678)</td>
+      </tr>
+    </table>
+  </div>
+
+  <div class="content-section">
+    <h3>3. Sanctioned Load Details</h3>
+    <table class="load-table">
+      <thead>
+        <tr>
+          <th>S.No</th>
+          <th>Description</th>
+          <th>Connected Load (kW)</th>
+          <th>Demand Factor</th>
+          <th>Demand (kW)</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>1</td>
+          <td>Residential Units (16 nos.)</td>
+          <td>96.0</td>
+          <td>0.6</td>
+          <td>57.6</td>
+        </tr>
+        <tr>
+          <td>2</td>
+          <td>Common Area Lighting</td>
+          <td>12.0</td>
+          <td>0.8</td>
+          <td>9.6</td>
+        </tr>
+        <tr>
+          <td>3</td>
+          <td>Lift (2 nos. x 15 kW)</td>
+          <td>30.0</td>
+          <td>0.7</td>
+          <td>21.0</td>
+        </tr>
+        <tr>
+          <td>4</td>
+          <td>Pump Motors</td>
+          <td>15.0</td>
+          <td>0.6</td>
+          <td>9.0</td>
+        </tr>
+        <tr>
+          <td>5</td>
+          <td>DG Set Starting</td>
+          <td>25.0</td>
+          <td>0.5</td>
+          <td>12.5</td>
+        </tr>
+      </tbody>
+      <tfoot>
+        <tr>
+          <td colspan="2">Total Sanctioned Load</td>
+          <td>178.0 kW</td>
+          <td>-</td>
+          <td>109.7 kW</td>
+        </tr>
+      </tfoot>
+    </table>
+  </div>
+
+  <div class="conditions">
+    <h3>Conditions of Approval</h3>
+    <ol>
+      <li>Installation shall comply with IS 3043 and Indian Electricity Rules, 1956.</li>
+      <li>Earthing shall be provided as per IS 3043 with minimum two independent earth pits.</li>
+      <li>Lightning protection system to be installed as per IS 2309.</li>
+      <li>Fire safety equipment and emergency lighting as per NBC 2016.</li>
+      <li>Residual Current Device (RCCB) mandatory for all circuits.</li>
+      <li>Completion certificate to be obtained within 6 months from date of approval.</li>
+      <li>Any deviation from approved drawings requires fresh approval.</li>
+      <li>This approval is valid only for the specified connected load.</li>
+    </ol>
+  </div>
+
+  <div class="approval-box">
+    <h3>APPROVED</h3>
+    <p>The electrical installation plan and load sanction for the above project has been reviewed and approved.</p>
+    <div class="validity">
+      <div>
+        <strong>Approval Date</strong>
+        15 October 2025
+      </div>
+      <div>
+        <strong>Valid Until</strong>
+        14 October 2026
+      </div>
+      <div>
+        <strong>Service Connection</strong>
+        HT/LT Supply Eligible
+      </div>
+    </div>
+  </div>
+
+  <div class="signatures">
+    <div class="signature-block">
+      <div class="signature-line">
+        <p><strong>Electrical Inspector</strong></p>
+        <p>Chennai South Division</p>
+        <p>TANGEDCO</p>
+      </div>
+    </div>
+    <div class="signature-block">
+      <div class="official-seal">
+        TANGEDCO<br>
+        ELECTRICAL<br>
+        INSPECTORATE<br>
+        CHENNAI
+      </div>
+      <div class="qr-placeholder">QR Code<br>for verification</div>
+    </div>
+  </div>
+
+  <div class="footer-note">
+    <p>This is a digitally generated certificate. Verify authenticity at www.tangedco.gov.in/verify</p>
+    <p>Document ID: D005 | BuildWise ERP System | Project: Royal Heights</p>
+  </div>
+</body>
+</html>
