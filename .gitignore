@@ -30,6 +30,9 @@ yarn-error.log*
 .env*.local
 .credentials.local
 
+# claude mcp config
+mcp.json
+
 # vercel
 .vercel
 

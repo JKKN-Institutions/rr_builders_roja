@@ -1,0 +1,7 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(SUPABASE_ACCESS_TOKEN=sbp_f9d99f3765ff8838c9ef1a55d6f40771f7859d35 npx -y supabase projects api-keys --project-ref lajghdcvpwnyjlbwxabl)"
+    ]
+  }
+}
