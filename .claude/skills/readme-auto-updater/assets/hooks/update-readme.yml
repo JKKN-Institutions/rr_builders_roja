@@ -1,0 +1,211 @@
+# GitHub Action: README Auto-Updater
+#
+# This workflow automatically updates README.md when significant changes
+# are pushed to the main branch.
+#
+# Installation:
+#   Copy this file to .github/workflows/update-readme.yml
+#
+# Configuration:
+#   - Set AUTO_COMMIT to 'true' to automatically commit README changes
+#   - Set CREATE_PR to 'true' to create a PR instead of direct commit
+
+name: Update README
+
+on:
+  push:
+    branches: [main, master]
+    paths:
+      - 'src/**'
+      - 'app/**'
+      - 'package.json'
+      - 'package-lock.json'
+      - 'yarn.lock'
+      - 'pnpm-lock.yaml'
+
+  # Allow manual trigger
+  workflow_dispatch:
+    inputs:
+      force_update:
+        description: 'Force full README regeneration'
+        required: false
+        default: 'false'
+        type: boolean
+
+env:
+  SKILL_PATH: .claude/skills/readme-auto-updater
+  METADATA_FILE: readme-metadata.json
+  AUTO_COMMIT: 'false'  # Set to 'true' to auto-commit
+  CREATE_PR: 'true'     # Set to 'true' to create PR
+
+jobs:
+  scan-project:
+    name: Scan Project Structure
+    runs-on: ubuntu-latest
+
+    outputs:
+      has_changes: ${{ steps.check.outputs.has_changes }}
+      modules_complete: ${{ steps.scan.outputs.modules_complete }}
+      modules_total: ${{ steps.scan.outputs.modules_total }}
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0  # Full history for git scanner
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Run project scanners
+        id: scan
+        run: |
+          echo "🔍 Running project scanners..."
+
+          # Run the main scanner
+          python ${{ env.SKILL_PATH }}/scripts/run_scanners.py . \
+            --output ${{ env.METADATA_FILE }} \
+            --quiet
+
+          # Extract summary for outputs
+          if [ -f "${{ env.METADATA_FILE }}" ]; then
+            MODULES_COMPLETE=$(jq '.summary.modules.complete // 0' ${{ env.METADATA_FILE }})
+            MODULES_TOTAL=$(jq '.summary.modules.total // 0' ${{ env.METADATA_FILE }})
+            echo "modules_complete=$MODULES_COMPLETE" >> $GITHUB_OUTPUT
+            echo "modules_total=$MODULES_TOTAL" >> $GITHUB_OUTPUT
+            echo "✅ Scan complete: $MODULES_COMPLETE/$MODULES_TOTAL modules"
+          fi
+
+      - name: Check for significant changes
+        id: check
+        run: |
+          # Compare with existing README
+          HAS_CHANGES="false"
+
+          if [ -f "README.md" ] && [ -f "${{ env.METADATA_FILE }}" ]; then
+            # Check if metadata differs significantly from README
+            # This is a simple check - could be enhanced
+
+            # Get current module count from README
+            CURRENT_MODULES=$(grep -c "| ✅\|| 🔄\|| 📋" README.md 2>/dev/null || echo "0")
+            NEW_MODULES=$(jq '.summary.modules.total // 0' ${{ env.METADATA_FILE }})
+
+            if [ "$CURRENT_MODULES" != "$NEW_MODULES" ]; then
+              HAS_CHANGES="true"
+              echo "📝 Module count changed: $CURRENT_MODULES → $NEW_MODULES"
+            fi
+
+            # Check for force update
+            if [ "${{ github.event.inputs.force_update }}" == "true" ]; then
+              HAS_CHANGES="true"
+              echo "🔄 Force update requested"
+            fi
+          else
+            # No README exists
+            HAS_CHANGES="true"
+            echo "📄 README.md not found, will generate"
+          fi
+
+          echo "has_changes=$HAS_CHANGES" >> $GITHUB_OUTPUT
+
+      - name: Upload metadata artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: readme-metadata
+          path: ${{ env.METADATA_FILE }}
+          retention-days: 1
+
+  update-readme:
+    name: Update README
+    needs: scan-project
+    if: needs.scan-project.outputs.has_changes == 'true'
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Download metadata
+        uses: actions/download-artifact@v4
+        with:
+          name: readme-metadata
+
+      - name: Generate README update summary
+        id: summary
+        run: |
+          echo "## 📊 README Update Summary" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+
+          if [ -f "${{ env.METADATA_FILE }}" ]; then
+            echo "### Project Status" >> $GITHUB_STEP_SUMMARY
+            echo "- **Modules Complete:** ${{ needs.scan-project.outputs.modules_complete }}" >> $GITHUB_STEP_SUMMARY
+            echo "- **Total Modules:** ${{ needs.scan-project.outputs.modules_total }}" >> $GITHUB_STEP_SUMMARY
+            echo "" >> $GITHUB_STEP_SUMMARY
+
+            echo "### Metadata Generated" >> $GITHUB_STEP_SUMMARY
+            echo '```json' >> $GITHUB_STEP_SUMMARY
+            jq '.summary' ${{ env.METADATA_FILE }} >> $GITHUB_STEP_SUMMARY
+            echo '```' >> $GITHUB_STEP_SUMMARY
+          fi
+
+          # Create summary for PR body
+          SUMMARY="## Auto-generated README Update\n\n"
+          SUMMARY+="- Modules: ${{ needs.scan-project.outputs.modules_complete }}/${{ needs.scan-project.outputs.modules_total }} complete\n"
+          SUMMARY+="- Generated: $(date -u +"%Y-%m-%d %H:%M UTC")\n"
+          echo "pr_body<<EOF" >> $GITHUB_OUTPUT
+          echo -e "$SUMMARY" >> $GITHUB_OUTPUT
+          echo "EOF" >> $GITHUB_OUTPUT
+
+      # Option 1: Create PR with metadata for manual Claude update
+      - name: Create PR with metadata
+        if: env.CREATE_PR == 'true'
+        uses: peter-evans/create-pull-request@v6
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          commit-message: 'docs: update README metadata [skip ci]'
+          title: '📝 README Update Available'
+          body: |
+            ${{ steps.summary.outputs.pr_body }}
+
+            ### Next Steps
+            1. Review the `readme-metadata.json` file
+            2. Run Claude Code to generate updated README:
+               ```
+               claude '/readme-update'
+               ```
+            3. Review and merge
+
+            ---
+            *Generated by README Auto-Updater workflow*
+          branch: docs/readme-update
+          delete-branch: true
+          labels: |
+            documentation
+            automated
+
+      # Option 2: Direct commit (if AUTO_COMMIT is true)
+      - name: Commit metadata
+        if: env.AUTO_COMMIT == 'true'
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+
+          git add ${{ env.METADATA_FILE }}
+          git commit -m "docs: update README metadata [skip ci]" || echo "No changes to commit"
+          git push
+
+  notify:
+    name: Notify
+    needs: [scan-project, update-readme]
+    if: always() && needs.scan-project.outputs.has_changes == 'true'
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Summary
+        run: |
+          echo "## 📝 README Auto-Updater Complete" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "- **Modules:** ${{ needs.scan-project.outputs.modules_complete }}/${{ needs.scan-project.outputs.modules_total }}" >> $GITHUB_STEP_SUMMARY
+          echo "- **Status:** README update available" >> $GITHUB_STEP_SUMMARY

@@ -1,0 +1,93 @@
+#!/bin/bash
+#
+# Git post-commit hook for README Auto-Updater
+#
+# Installation:
+#   cp .claude/skills/readme-auto-updater/assets/hooks/post-commit .git/hooks/
+#   chmod +x .git/hooks/post-commit
+#
+# This hook runs after each commit and checks if README update is needed.
+
+# Configuration
+SKILL_PATH=".claude/skills/readme-auto-updater"
+SCANNER_SCRIPT="$SKILL_PATH/scripts/scan_structure.py"
+METADATA_FILE="/tmp/readme-scan-$(basename $(pwd)).json"
+
+# Colors for output
+RED='\033[0;31m'
+GREEN='\033[0;32m'
+YELLOW='\033[1;33m'
+NC='\033[0m' # No Color
+
+echo -e "${YELLOW}📝 README Auto-Updater: Checking for updates...${NC}"
+
+# Check if Python is available
+if ! command -v python3 &> /dev/null && ! command -v python &> /dev/null; then
+    echo -e "${RED}⚠️  Python not found, skipping README check${NC}"
+    exit 0
+fi
+
+PYTHON_CMD="python3"
+if ! command -v python3 &> /dev/null; then
+    PYTHON_CMD="python"
+fi
+
+# Check if scanner exists
+if [ ! -f "$SCANNER_SCRIPT" ]; then
+    echo -e "${YELLOW}⚠️  Scanner not found at $SCANNER_SCRIPT${NC}"
+    exit 0
+fi
+
+# Run structure scan
+$PYTHON_CMD "$SCANNER_SCRIPT" . "$METADATA_FILE" 2>/dev/null
+
+if [ ! -f "$METADATA_FILE" ]; then
+    echo -e "${RED}⚠️  Scan failed, skipping README check${NC}"
+    exit 0
+fi
+
+# Check for completed modules
+COMPLETE_MODULES=$(grep -c '"status": "complete"' "$METADATA_FILE" 2>/dev/null || echo "0")
+IN_PROGRESS=$(grep -c '"status": "in_progress"' "$METADATA_FILE" 2>/dev/null || echo "0")
+
+# Get changed files in this commit
+CHANGED_FILES=$(git diff-tree --no-commit-id --name-only -r HEAD 2>/dev/null)
+
+# Check if significant changes were made
+SIGNIFICANT_CHANGE=false
+
+# Check for new pages
+if echo "$CHANGED_FILES" | grep -q "page\.\(tsx\|ts\|jsx\|js\)$"; then
+    SIGNIFICANT_CHANGE=true
+    echo -e "${GREEN}📄 New page detected${NC}"
+fi
+
+# Check for new API routes
+if echo "$CHANGED_FILES" | grep -q "api/.*/route\.\(ts\|js\)$"; then
+    SIGNIFICANT_CHANGE=true
+    echo -e "${GREEN}🔌 New API route detected${NC}"
+fi
+
+# Check for package.json changes
+if echo "$CHANGED_FILES" | grep -q "package.json$"; then
+    SIGNIFICANT_CHANGE=true
+    echo -e "${GREEN}📦 Dependencies changed${NC}"
+fi
+
+# Output summary
+echo ""
+echo -e "📊 Project Status:"
+echo -e "   Modules Complete: ${GREEN}$COMPLETE_MODULES${NC}"
+echo -e "   Modules In Progress: ${YELLOW}$IN_PROGRESS${NC}"
+echo ""
+
+if [ "$SIGNIFICANT_CHANGE" = true ]; then
+    echo -e "${YELLOW}💡 Recommendation: Run README update${NC}"
+    echo -e "   Use: ${GREEN}claude '/readme-update'${NC}"
+    echo -e "   Or:  ${GREEN}python $SKILL_PATH/scripts/run_scanners.py .${NC}"
+fi
+
+# Cleanup
+rm -f "$METADATA_FILE"
+
+exit 0

@@ -41,7 +41,7 @@ export async function validateApiKey(
 
   const { data: client, error } = await supabase
     .from("clients")
-    .select("id, api_key_hash, revoked_at")
+    .select("client_id, api_key_hash, revoked_at")
     .eq("api_key_prefix", prefix)
     .single();
 
@@ -85,7 +85,7 @@ export async function validateApiKey(
       ),
     };
   }
-  if (headerClientId !== client.id) {
+  if (headerClientId !== client.client_id) {
     return {
       ok: false,
       response: NextResponse.json(
@@ -95,5 +95,5 @@ export async function validateApiKey(
     };
   }
 
-  return { ok: true, clientId: client.id };
+  return { ok: true, clientId: client.client_id };
 }

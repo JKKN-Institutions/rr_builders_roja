@@ -1,0 +1,6 @@
+# .fresh-eyes-ignore — patterns confirmed intentional by user
+# Format: filename: description (YYYY-MM-DD)
+# Entries older than 90 days are auto-pruned
+
+SKILL.md: API key stored as plaintext in config.json on client machine — v1 trade-off for CBO simplicity (2026-03-12)
+SKILL.md: HMAC secret empty/uninitialized in config template — deferred to v2 (2026-03-12)
