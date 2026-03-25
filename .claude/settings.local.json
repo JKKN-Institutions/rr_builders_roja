@@ -5,7 +5,8 @@
       "Bash(curl:*)",
       "Bash(npm run:*)",
       "Bash(npx next:*)",
-      "Bash(npx next@14:*)"
+      "Bash(npx next@14:*)",
+      "Bash(npm install:*)"
     ]
   },
   "enableAllProjectMcpServers": true,
